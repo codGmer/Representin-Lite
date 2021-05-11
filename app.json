@@ -1,0 +1,98 @@
+{
+  "expo": {
+    "name": "Representin",
+    "slug": "representin-project",
+    "privacy": "public",
+    "scheme": "representin",
+    "platforms": [
+      "ios",
+      "android",
+      "web"
+    ],
+    "hooks": {
+      "postPublish": [
+        {
+          "file": "sentry-expo/upload-sourcemaps",
+          "config": {
+            "organization": "",
+            "project": "",
+            "authToken": ""
+          }
+        }
+      ]
+    },
+    "version": "2.7.0",
+    "orientation": "portrait",
+    "icon": "./assets/images/App_Icon.png",
+    "facebookScheme": "",
+    "facebookAppId": "",
+    "facebookDisplayName": "Representin",
+    "splash": {
+      "image": "./assets/images/Splash_1242_2436_Ios.png",
+      "resizeMode": "cover",
+      "backgroundColor": "#000000"
+    },
+    "updates": {
+      "fallbackToCacheTimeout": 30000,
+      "enabled": true,
+      "checkAutomatically": "ON_LOAD"
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "bundleIdentifier": "com.representin.representin",
+      "infoPlist": {
+        "NSLocationWhenInUseUsageDescription": "Geef toestemming voor jouw locatie, het aanbod van deze app wordt afgestemd op jouw omgeving",
+        "NSPhotoLibraryUsageDescription": "Geef toestemming om foto's te downloaden naar je apparaat",
+        "NSPhotoLibraryAddUsageDescription": "Geef toestemming om foto's te downloaden naar je apparaat",
+        "CFBundleAllowMixedLocalizations": true
+      },
+      "associatedDomains": [
+        "applinks:www.representin.nl"
+      ],
+      "config": {
+        "googleMapsApiKey": ""
+      },
+      "buildNumber": "2.7.5",
+      "supportsTablet": true,
+      "usesAppleSignIn": true
+    },
+    "android": {
+      "permissions": [
+        "ACCESS_FINE_LOCATION",
+        "ACCESS_COARSE_LOCATION",
+        "WRITE_EXTERNAL_STORAGE"
+      ],
+      "splash": {
+        "resizeMode": "cover",
+        "backgroundColor": "#000000",
+        "xxxhdpi": "./assets/images/Splash_1080_1920_Android.png"
+      },
+      "versionCode": 13,
+      "package": "com.representin.representin",
+      "config": {
+        "googleMaps": {
+          "apiKey": ""
+        }
+      },
+      "intentFilters": [
+        {
+          "action": "VIEW",
+          "data": [
+            {
+              "scheme": "https",
+              "host": "*.representin.nl",
+              "pathPrefix": "/app"
+            }
+          ],
+          "category": [
+            "BROWSABLE",
+            "DEFAULT"
+          ]
+        }
+      ]
+    },
+    "description": ""
+  }
+}

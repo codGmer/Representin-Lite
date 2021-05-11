@@ -1,0 +1,16 @@
+./node_modules
+node_modules
+node_modules old/
+node_modules old
+./node_modules old
+node_modules/.cache/@babel/register/.babel.7.2.2.development.json
+node_modules old/.bin/acorn
+.expo/packager-info.json
+.expo/
+.expo
+__tests__/
+.idea/
+start/
+.vscode/
+package-lock.json
+.DS_Store
