@@ -1,6 +1,6 @@
+/* eslint-disable react/no-unescaped-entities */
 import React, { useEffect } from 'react';
 import {
-    StyleSheet,
     View,
     Text,
     BackHandler,
@@ -150,33 +150,3 @@ export default function AboutScreen({ navigation }) {
     }
 }
 
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: 'white',
-        //marginTop: Constants.statusBarHeight,
-        justifyContent: 'center',
-        shadowColor: '#000',
-        shadowOffset: { width: 0, height: 4 },
-        shadowOpacity: 0.8,
-        shadowRadius: 4,
-        elevation: 1
-    },
-    horizontal: {
-        flexDirection: 'row',
-        justifyContent: 'space-around',
-        padding: 10
-    },
-    header: {
-        alignItems: 'center',
-        backgroundColor: 'black',
-        width: '100%',
-        height: 40,
-        flexDirection: 'row',
-        justifyContent: 'center'
-    },
-
-    headerLogo: {
-        resizeMode: 'center'
-    }
-});

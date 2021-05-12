@@ -1,6 +1,5 @@
 /* eslint-disable react/prop-types */
 import React, { useState } from 'react';
-import * as SecureStore from 'expo-secure-store';
 import {
 	StyleSheet,
 	View,
@@ -12,46 +11,8 @@ import { Button } from 'react-native-elements';
 
 export default function ResetScreen({ route, navigation }) {
 
-	const [Name, setName] = useState("");
 	const [passWord, setPassWord] = useState("");
-	const [FirstName, setFirstName] = useState("");
-	const [FbName, setFbName] = useState("");
-	const [FbEmail, setFbEmail] = useState("");
-	const [Email, setEmail] = useState("");
-	const [UserData, setUserData] = useState("");
 	const [passWordComfirm, setPassWordComfirm] = useState("");
-
-	//toekomst muziek, fingerprint
-
-	// handleLoginPress = () => {
-	//   if (Platform.OS === 'android') {
-	//     showAndroidAlert();
-	//   } else {
-	//     scanBiometrics();
-	//   }
-	// };
-
-	// showAndroidAlert = () => {
-	//     Alert.alert('Fingerprint Scan', 'Place your finger over the touch sensor.');
-	//     scanBiometrics();
-	// };
-
-	// scanBiometrics = async () => {
-	//     let result = await Expo.Fingerprint.authenticateAsync('Biometric Scan.');
-	//     if (result.success) {
-	//       dropdown.alertWithType(
-	//         'success',
-	//         'You are you!',
-	//         'Bio-Authentication succeeded.'
-	//       );
-	//     } else {
-	//       dropdown.alertWithType(
-	//         'error',
-	//         'Uh oh!',
-	//         'Bio-Authentication failed or canceled.'
-	//       );
-	//     }
-	// };
 
 	function _userResetPassWord() {
 		if (
@@ -77,7 +38,7 @@ export default function ResetScreen({ route, navigation }) {
 					);
 				} else {
 					// eslint-disable-next-line no-undef
-					fetch('http://representin.nl/newapp/functions/index.php', {
+					fetch('http://representin.nl/api', {
 						method: 'POST',
 						headers: {
 							Accept: 'application/json',

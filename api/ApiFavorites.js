@@ -54,7 +54,7 @@ export default class ApiFavorites {
 			});
 			if (favoriteList) {
 				for (var i = 0; i < favoriteList.length; i++) {
-					favoriteList[i] = favoriteList[i];
+					favoriteList = favoriteList[i];
 				}
 				await AsyncStorage.setItem(
 					'Favorites',

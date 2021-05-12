@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Text, Dimensions, View } from 'react-native';
 import Modal from 'react-native-modal';
 import { LinearGradient } from 'expo-linear-gradient';

@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React, { useState, useEffect, useContext } from 'react';
 import * as SecureStore from 'expo-secure-store';
 import {
@@ -19,6 +20,7 @@ import { ActivityIndicator } from 'react-native-paper';
 import { ExtraProps } from "../context/context";
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 
+// eslint-disable-next-line react/prop-types
 export default function RegisterScreen({ navigation }) {
 	const [FirstName, setFirstName] = useState("");
 	const [LastName, setLastName] = useState("");
@@ -46,6 +48,27 @@ export default function RegisterScreen({ navigation }) {
 	function _handleBackPress() {
 		navigation.navigate('Login');
 		return true;
+	}
+
+	async function _askPermission() {
+		let { status } = await Location.requestForegroundPermissionsAsync();
+		if (status === 'undetermined') {
+			Alert.alert(
+				'Locatie',
+				'Geef toegang tot je locatie voor deze app. Deze wordt enkel gebruikt binnen de app om jouw aanbod te personaliseren.',
+				[
+					{
+						text: 'OK',
+						onPress: () => {
+							_askPermission();
+						}
+					}
+				],
+				{ cancelable: false }
+			);
+		} else if (status == 'granted') {
+			_getLocationAndNavigate()
+		}
 	}
 
 	async function _getLocationAndNavigate(responseJson) {
@@ -131,19 +154,19 @@ export default function RegisterScreen({ navigation }) {
 						PassWord.includes('é') ||
 						PassWord.includes('á')
 					) {
-						alert(
+						Alert.alert(
 							'Controleer jouw email en wachtwoord op speciale tekens, dit is niet toegestaan'
 						);
 						setRegisterLoading(false);
 					} else {
 						if (PassWord.length < 5) {
-							alert(
+							Alert.alert(
 								'Jouw wachtwoord moet minimaal 5 karakters lang zijn'
 							);
 							setRegisterLoading(false);
 						} else {
 							fetch(
-								'http://representin.nl/newapp/functions/index.php',
+								'http://representin.nl/api',
 								{
 									method: 'POST',
 									headers: {
@@ -177,7 +200,7 @@ export default function RegisterScreen({ navigation }) {
 										SecureStore.setItemAsync(
 											'userData',
 											JSON.stringify(responseJson)
-										).then(data => {
+										).then(() => {
 											_getLocationAndNavigate(responseJson);
 										});
 									} else if (responseJson == '404') {

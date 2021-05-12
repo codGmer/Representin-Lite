@@ -1,6 +1,6 @@
 /* eslint-disable react/display-name */
 /* eslint-disable react/prop-types */
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
     Alert,
     View,
@@ -8,9 +8,7 @@ import {
     Text,
     Platform,
     BackHandler,
-    StyleSheet,
-    Pressable,
-    Linking
+    StyleSheet
 } from 'react-native';
 import * as Location from 'expo-location';
 import Constants from 'expo-constants';
@@ -46,7 +44,6 @@ export default function AuthCheck({ route, navigation }) {
     const [updateChecked, setUpdateChecked] = useState(false);
     const [count, setCount] = useState(-1);
     const [loading, setLoading] = useState(true);
-    const firstRun = useRef(0);
 
     useEffect(() => {
         async function _checkForOtaUpdate() {
@@ -156,7 +153,7 @@ export default function AuthCheck({ route, navigation }) {
                             error,
                             false
                         );
-                        alert('Er ging iets mis met de locatie ophalen, probeer het opnieuw')
+                        Alert.alert('Er ging iets mis met de locatie ophalen, probeer het opnieuw')
                         setLoggingIn(false);
                         setLoggedIn(false);
                         setSignedOut(true);
@@ -316,51 +313,6 @@ export default function AuthCheck({ route, navigation }) {
                     }
                 />
             </View>
-        );
-    }
-
-    async function _checkLocationPermissionAfterRetry() {
-        let permission = await Location.requestForegroundPermissionsAsync();
-        if (permission.canAskAgain && permission.status === 'denied') {
-            await Location.requestForegroundPermissionsAsync();
-            let permission = await Location.requestForegroundPermissionsAsync();
-            if (permission.status == 'granted') {
-                await Updates.fetchUpdateAsync();
-                await Updates.reloadAsync();
-            }
-        } else {
-            if (permission.status == 'granted') {
-                await Updates.fetchUpdateAsync();
-                await Updates.reloadAsync();
-            }
-        }
-    }
-
-    function _retryAskIOSPermission() {
-        Alert.alert(
-            'Locatie',
-            'Geef toestemming op de volgende pagina en keer terug naar de app.',
-            [
-                {
-                    text: 'OK',
-                    onPress: () => {
-                        Linking.openURL(
-                            'app-settings://location/com.representin.representin'
-                        );
-                        Alert.alert(
-                            'Locatie',
-                            'Klik op "OK" om verder te gaan',
-                            [
-                                {
-                                    text: 'OK',
-                                    onPress: () => _checkLocationPermissionAfterRetry()
-                                }
-                            ]
-                        );
-                    }
-                }
-            ],
-            { cancelable: false }
         );
     }
 

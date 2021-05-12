@@ -1,17 +1,14 @@
+/* eslint-disable react/prop-types */
 import React, { useEffect } from 'react';
 import {
-    StyleSheet,
     View,
-    Image,
     Text,
     BackHandler,
-    ScrollView,
-    Dimensions
+    ScrollView
 } from 'react-native';
 import * as WebBrowser from 'expo-web-browser';
 import FbIcon from 'react-native-vector-icons/AntDesign';
 import InstaIcon from 'react-native-vector-icons/AntDesign';
-import { Icon } from 'react-native-elements';
 import { Col, Grid, Row } from 'react-native-easy-grid';
 
 export default function ContactScreen({ navigation }) {
@@ -104,42 +101,16 @@ export default function ContactScreen({ navigation }) {
         await WebBrowser.openBrowserAsync(
             'https://www.instagram.com/representinnl/'
         );
-    };
+    }
 
     async function _handlePressButtonAsync() {
         await WebBrowser.openBrowserAsync(
             'https://www.facebook.com/representinnl/'
         );
-    };
+    }
 
     function handleBackPress() {
         navigation.goBack();
         return true;
-    };
-}
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: 'white',
-        //marginTop: Constants.statusBarHeight,
-        justifyContent: 'center',
-        shadowColor: '#000',
-        shadowOffset: { width: 0, height: 4 },
-        shadowOpacity: 0.8,
-        shadowRadius: 4,
-        elevation: 1
-    },
-    horizontal: {
-        flexDirection: 'row',
-        justifyContent: 'space-around',
-        padding: 10
-    },
-    headerLogo: {
-        resizeMode: 'center',
-        alignSelf: 'center',
-        width: 100,
-        height: 80,
-        marginLeft: 10
     }
-});
+}

@@ -89,7 +89,6 @@ export default function EventScreenTemplate({ route }) {
 				_getScreenData()
 			}
 		} else {
-			//setRefreshing(true)
 			if (newData) {
 				setDataSource(filteredList)
 				setLoading(false)
@@ -375,7 +374,7 @@ export default function EventScreenTemplate({ route }) {
 
 	function _updateAdClick(adID) {
 		// eslint-disable-next-line no-undef
-		fetch('https://representin.nl/newapp/functions/index.php', {
+		fetch('https://representin.nl/api', {
 			method: 'POST',
 			headers: {
 				Accept: 'application/json',

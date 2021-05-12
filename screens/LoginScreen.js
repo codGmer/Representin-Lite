@@ -1,3 +1,5 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable no-undef */
 /* eslint-disable react/prop-types */
 import React, { useState, useContext, useEffect } from 'react';
 import * as Linking from 'expo-linking';
@@ -13,7 +15,6 @@ import {
 } from 'react-native';
 import * as Location from 'expo-location';
 import * as Facebook from 'expo-facebook';
-import * as AppleAuthentication from 'expo-apple-authentication';
 import { Col, Grid } from 'react-native-easy-grid';
 import { ActivityIndicator } from 'react-native-paper';
 import { ExtraProps } from "../context/context";
@@ -63,8 +64,8 @@ export default function LoginScreen({ navigation }) {
                     `https://graph.facebook.com/v3.2/me?access_token=${token}&fields=id,email,name,first_name,last_name,gender,picture.type(large)`
                 );
                 try {
-                    if (Fbresult.hasOwnProperty('error')) {
-                        ReportError._reportError(15, 'Facebook login error ' + Fbresult.error.message, false);
+                    if (Object.prototype.hasOwnProperty.call(Fbresponse, "error")) {
+                        ReportError._reportError(15, 'Facebook login error ' + Fbresponse.error.message, false);
                         setFbLogginInLoading(false);
                         alert('Er is momenteel een tijdelijke Facebook login error! Probeer een andere login methode.')
                     } else {
@@ -430,102 +431,6 @@ export default function LoginScreen({ navigation }) {
                 'Controleer je invoer',
                 'Email of wachtwoord mag niet leeg zijn',
                 [{ text: 'OK', onPress: () => console.log('OK Pressed') }],
-                { cancelable: false }
-            );
-        }
-    }
-
-    async function appleSignIn(firstName, lastName, email, idCode) {
-        let responseJson = await GetApiListData._fetchRequest(
-            {
-                action: 'registerApple',
-                firstName: firstName == null ? 'unknown' : firstName,
-                lastName: lastName == null ? 'unknown' : lastName,
-                email: email == null ? 'unknown' : email,
-                idCode
-            }
-        )
-        if (
-            responseJson !== '404' &&
-            responseJson !== '405' &&
-            responseJson !== 'AR'
-        ) {
-            SecureStore.setItemAsync(
-                'userData',
-                JSON.stringify(responseJson)
-            ).then(data => {
-                if (responseJson.UserID == '0' || typeof responseJson.UserID == 'undefined') {
-                    SecureStore.setItemAsync(
-                        'userData',
-                        JSON.stringify(null)
-                    ).then(() => {
-                        alert('Oops er ging iets mis met de login!')
-                        console.log('UserID Unkown!! 487')
-                    })
-                } else {
-                    setUserData(responseJson)
-                }
-            });
-        } else if (responseJson == '404') {
-            Alert.alert(
-                'Error',
-                'Er is iets fout gegaan: No Request, Probeer het later opnieuw.',
-                [
-                    {
-                        text: 'OK',
-                        onPress: () =>
-                            console.log(
-                                'OK Pressed'
-                            )
-                    }
-                ],
-                { cancelable: false }
-            );
-        } else if (responseJson == '405') {
-            Alert.alert(
-                'Error',
-                'Er is iets fout gegaan: No DB conn, Probeer het later opnieuw.',
-                [
-                    {
-                        text: 'OK',
-                        onPress: () =>
-                            console.log(
-                                'OK Pressed'
-                            )
-                    }
-                ],
-                { cancelable: false }
-            );
-        } else if (responseJson == 'AR') {
-            SecureStore.setItemAsync(
-                'userData',
-                JSON.stringify(responseJson)
-            ).then(data => {
-                if (responseJson.UserID == '0' || typeof responseJson.UserID == 'undefined') {
-                    SecureStore.setItemAsync(
-                        'userData',
-                        JSON.stringify(null)
-                    ).then(() => {
-                        alert('Oops er ging iets mis met de login!')
-                        console.log('UserID Unkown!! 534')
-                    })
-                } else {
-                    setUserData(responseJson)
-                }
-            });
-        } else {
-            Alert.alert(
-                'Verkeerde invoer',
-                'Vul alle velden in',
-                [
-                    {
-                        text: 'OK',
-                        onPress: () =>
-                            console.log(
-                                'OK Pressed'
-                            )
-                    }
-                ],
                 { cancelable: false }
             );
         }

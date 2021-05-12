@@ -3,6 +3,7 @@ module.exports = {
         "es6": true,
         "node": true
     },
+    "fetch": false,
     "extends": [
         "eslint:recommended",
         "plugin:react/recommended"

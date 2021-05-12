@@ -1,3 +1,5 @@
+/* eslint-disable react/prop-types */
+/* eslint-disable react/no-unescaped-entities */
 import React, { useEffect } from 'react';
 import {
     View,
@@ -312,5 +314,5 @@ export default function PrivacyScreen({ navigation }) {
     function handleBackPress() {
         navigation.goBack();
         return true;
-    };
+    }
 }

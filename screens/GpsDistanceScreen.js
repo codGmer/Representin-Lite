@@ -108,7 +108,7 @@ export default function GpsDistanceScreen({ navigation }) {
         });
     }
 
-    const errorHandler = (error, stackTrace) => {
+    const errorHandler = (error) => {
         AsyncStorage.setItem('error', JSON.stringify({ error }));
     }
 

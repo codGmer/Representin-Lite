@@ -12,7 +12,7 @@ import OrdersScreen from '../screens/OrdersScreen';
 import OrderDetailsScreen from '../screens/OrderDetailsScreen';
 import MainHeader from '../constants/MainHeader';
 
-export default function MoreStack({ navigation, route }) {
+export default function MoreStack({ navigation }) {
     const Stack = createStackNavigator();
     return (
         <Stack.Navigator

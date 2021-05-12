@@ -8,16 +8,12 @@ import * as Linking from 'expo-linking';
 
 import EventsStack from './EventsStack';
 import MoreStack from './MoreStack';
-import ShopStack from './ShopStack';
 import GetApiData from '../api/GetApiListData';
 
 const BottomTab = createMaterialBottomTabNavigator();
 
 export default function BottomTabNavigator({ route, navigation }) {
-	const { countParam } = route.params;
-	const [count, setCount] = useState(countParam);
 	const [initFilterValue] = useState(route.params.initFilterValue);
-	const [isRead, setIsRead] = useState(countParam > 0 ? false : true);
 
 	useEffect(() => {
 
@@ -127,17 +123,6 @@ export default function BottomTabNavigator({ route, navigation }) {
 			<TabBarIcon focused={focused} name={'md-calendar'} />
 		)
 	};
-	let ShopOptions = {
-		tabBarLabel: 'Shop',
-		tabBarColor: '#000000',
-		tabBarIcon: ({ focused }) => (
-			<TabBarIcon focused={focused} name={'md-cart'} />
-		),
-		header: null,
-		headerStyle: {
-			backgroundColor: 'black'
-		}
-	};
 	let MoreOptions = {
 		header: null,
 		tabBarLabel: 'Meer',
@@ -155,11 +140,6 @@ export default function BottomTabNavigator({ route, navigation }) {
 				options={EventOptions}
 				component={EventsStack}
 				initialParams={{ initFilterValue }}
-			/>
-			<BottomTab.Screen
-				name="Shop"
-				options={ShopOptions}
-				component={ShopStack}
 			/>
 			<BottomTab.Screen
 				name="Meer"

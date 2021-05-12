@@ -213,7 +213,7 @@ export default function SearchScreen({ navigation, route }) {
 	function _searchFilterFunction(searchInput) {
 		if (route.params.shopSearch) {
 			// eslint-disable-next-line no-undef
-			fetch('https://representin.nl/newapp/functions/index.php', {
+			fetch('https://representin.nl/api', {
 				method: 'POST',
 				headers: {
 					Accept: 'application/json',
@@ -246,13 +246,13 @@ export default function SearchScreen({ navigation, route }) {
 					}
 				})
 				.catch(error => {
-					//console.log(error);
+					console.log(error);
 					setLoading(false)
 					setSearchLoading(false)
 				});
 		} else if (route.params.winSearch) {
 			// eslint-disable-next-line no-undef
-			fetch('https://representin.nl/newapp/functions/index.php', {
+			fetch('https://representin.nl/api', {
 				method: 'POST',
 				headers: {
 					Accept: 'application/json',
@@ -286,7 +286,7 @@ export default function SearchScreen({ navigation, route }) {
 				});
 		} else {
 			// eslint-disable-next-line no-undef
-			fetch('https://representin.nl/newapp/functions/index.php', {
+			fetch('https://representin.nl/api', {
 				method: 'POST',
 				headers: {
 					Accept: 'application/json',
@@ -428,7 +428,7 @@ export default function SearchScreen({ navigation, route }) {
 
 	function _updateAdClick(adID) {
 		// eslint-disable-next-line no-undef
-		fetch('https://representin.nl/newapp/functions/index.php', {
+		fetch('https://representin.nl/api', {
 			method: 'POST',
 			headers: {
 				Accept: 'application/json',
@@ -1313,7 +1313,7 @@ export default function SearchScreen({ navigation, route }) {
 										? renderShopItem
 										: renderItem
 								}
-								keyExtractor={(item, index) => item.Id}
+								keyExtractor={(item) => item.Id}
 								ItemSeparatorComponent={
 									renderSeperator
 								}

@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react/prop-types */
 /* eslint-disable react/display-name */
 import React, { useEffect, useRef, useState, useLayoutEffect } from 'react';
@@ -14,7 +15,8 @@ import {
     Share,
     Platform,
     Modal,
-    Pressable
+    Pressable,
+    Alert
 } from 'react-native';
 import * as Network from 'expo-network';
 import * as WebBrowser from 'expo-web-browser';
@@ -240,7 +242,7 @@ export default function DetailsScreen({ navigation, route }) {
                     });
                 } else {
                     //apparaat offline
-                    alert('U heeft momenteel geen internet verbinding, controleer deze en probeer opnieuw');
+                    Alert.alert('U heeft momenteel geen internet verbinding, controleer deze en probeer opnieuw');
                     navigation.goBack();
                 }
             }
@@ -489,7 +491,7 @@ export default function DetailsScreen({ navigation, route }) {
     }
 
     function _onChange(index, newVal) {
-        setProductItems(productItems.map((product, i) =>
+        setProductItems(productItems.map((product) =>
             product.PropertyID === index ? { ...product, Amount: newVal } : product
         ))
     }
@@ -509,7 +511,7 @@ export default function DetailsScreen({ navigation, route }) {
                 _closeNameModal();
                 _openSuccesWinInsertedModal();
             } else {
-                alert('Niet gelukt!');
+                Alert.alert('Niet gelukt!');
             }
         });
     }
@@ -1340,7 +1342,7 @@ export default function DetailsScreen({ navigation, route }) {
                                             if (adres !== '') {
                                                 _openMaps(adres);
                                             } else {
-                                                alert(
+                                                Alert.alert(
                                                     'Geen locatie bekend!'
                                                 );
                                             }
@@ -1487,7 +1489,7 @@ export default function DetailsScreen({ navigation, route }) {
                                         : null}
                                     <View style={{ flex: 1 }}>
                                         <View style={{ flex: 1, margin: 0, flexDirection: 'column' }}>
-                                            <FlatList data={productItems} style={{ flex: 1 }} keyExtractor={(item, index) => item.PropertyID} renderItem={_renderItem} />
+                                            <FlatList data={productItems} style={{ flex: 1 }} keyExtractor={(item) => item.PropertyID} renderItem={_renderItem} />
                                             {dataSource.Terms !== '' && typeof dataSource.Terms !== 'undefined' ?
                                                 <React.Fragment>
                                                     <Text
